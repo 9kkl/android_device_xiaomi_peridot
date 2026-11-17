@@ -103,8 +103,7 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8635
 TARGET_KERNEL_CONFIG := \
     gki_defconfig \
     vendor/pineapple_GKI.config \
-    vendor/peridot_GKI.config \
-    $(DEVICE_PATH)/configs/kernel/no_rust.config
+    vendor/peridot_GKI.config
 
 BOARD_KERNEL_CMDLINE := \
     video=vfb:640x400,bpp=32,memsize=3072000 \

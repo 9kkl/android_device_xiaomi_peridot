@@ -24,3 +24,12 @@ if [ -d "system/media" ]; then
         git -C system/media apply -v --whitespace=nowarn "$DEVICE_PATH/patches/0002-system-media-add-libaudioroute-v34.patch"
     fi
 fi
+
+# Ensure UAPI_HEADER_TEST is disabled in peridot_GKI.config
+PERIDOT_GKI_CONFIG="kernel/xiaomi/sm8635/arch/arm64/configs/vendor/peridot_GKI.config"
+if [ -f "$PERIDOT_GKI_CONFIG" ]; then
+    if ! grep -q "CONFIG_UAPI_HEADER_TEST" "$PERIDOT_GKI_CONFIG"; then
+        echo "Disabling CONFIG_UAPI_HEADER_TEST in $PERIDOT_GKI_CONFIG..."
+        echo -e "\n# Disable UAPI header test\n# CONFIG_UAPI_HEADER_TEST is not set" >> "$PERIDOT_GKI_CONFIG"
+    fi
+fi
